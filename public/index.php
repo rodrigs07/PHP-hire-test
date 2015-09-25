@@ -30,36 +30,6 @@ $app->post('/', function() use($app,$db){
 	$app->redirect("index.php");
 });
 
-//testando
-$app->get('/email',function() use($app){
-	require 'PHPMailerAutoload.php';
-	$mail =  new PHPMailer;
-	$mail->isSMTP();
-	$mail->Host = 'smtp.dominio.net';                   
-
-	$mail->From('rmoreiradematos@gmail.com');
-	$mail->FromNome('Rodrigo');
-	$mail->AddAddress('rmopreiradematos@gmail.com', 'Rodrigo Matos');
-	$mail->AddAddress('ciclano@site.net')
-
-	$mail->isHTML(true);                                  // Set email format to HTML
-
-	$mail->Subject = 'Here is the subject';
-	$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-	$enviado = $mail->Send();
-	// Limpa os destinatários e os anexos
-	$mail->ClearAllRecipients();
-	$mail->ClearAttachments();
-	// Exibe uma mensagem de resultado
-	if ($enviado) {
-	  echo "E-mail enviado com sucesso!";
-	} else {
-	  echo "Não foi possível enviar o e-mail.";
-	  echo "<b>Informações do erro:</b> " . $mail->ErrorInfo;
-	}
-		}
-});
 $app->run();
 
 	

@@ -9,7 +9,8 @@
 	
 	<link rel="stylesheet" type="text/css" href="../views/bootstrap-3.3.5/dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../views/bootstrap-3.3.5/dist/css/bootstrap-theme.min.css"/>
-	<link rel="stylesheet" href="../views/css/style.css"/>
+  <link rel="stylesheet" href="../views/css/style.css"/>
+	<link rel="stylesheet" href="../views/css/normalize.css"/>
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="../views/js/jquery-1.11.2.min.js" type="text/javascript"></script>
