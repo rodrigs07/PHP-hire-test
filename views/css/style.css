@@ -1,0 +1,21 @@
+.float{
+	float:left;
+}
+
+.float input{
+	width:350px;
+}
+
+.float tr td{
+	width:200px;
+	padding:3px;
+	text-align:left;
+}
+
+address{
+	padding: 0px 125px;
+}
+
+iframe{
+	margin-bottom:30px;
+}
