@@ -1,11 +1,16 @@
 <?php
 
- require "../vendor/autoload.php";
- $app = new \Slim\Slim();
- $app->config(array(
- 	'debug' => true,
- 	'templates.path' => '../views',
- 	));
+require "../vendor/autoload.php";
+require "../vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
+require "../vendor/phpmailer/phpmailer/function.php";
+
+
+
+$app = new \Slim\Slim();
+$app->config(array(
+	'debug' => true,
+	'templates.path' => '../views',
+	));
 
 $db= new PDO("mysql:host=localhost;dbname=projeto","root","root");
 
@@ -25,9 +30,18 @@ $app->post('/', function() use($app,$db){
 	$email = $request->post('email');
 	$site = $request->post('site');
 	$inquiry = $request->post('inquiry');
-	$dbquery = $db->prepare("INSERT INTO inquiry(name,email,website,inquiry) VALUES(:name,:email,:site,:inquiry)");
-	$dbquery->execute(array(":name"=>$name,":email"=>$email,":site"=>$site,":inquiry"=>$inquiry)); 	
-	$app->redirect("index.php");
+	if($name == '' || $email == '' || $site == '' || $inquiry == ''){
+		$app->redirect("index.php");	
+	} 
+	else{	
+		$dbquery = $db->prepare("INSERT INTO inquiry(name,email,website,inquiry) VALUES(:name,:email,:site,:inquiry)");
+		$dbquery->execute(array(":name"=>$name,":email"=>$email,":site"=>$site,":inquiry"=>$inquiry)); 	
+	}
+		$app->redirect("index.php");
+});
+
+$app->get('/send_email', function() use($app){
+	send_email();
 });
 
 $app->run();
